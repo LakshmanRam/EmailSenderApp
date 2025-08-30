@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Email Sender Application - Spring Boot
 
@@ -153,3 +154,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 Feel free to adjust any sections based on your project’s specifics or if you want to include anything else!
+=======
+# EmailSenderApp
+This is a simple and efficient email sender application built with Spring Boot. The app provides an easy way to send emails through SMTP, leveraging the JavaMail API.
+>>>>>>> EmailSender

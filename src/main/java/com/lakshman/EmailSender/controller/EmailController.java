@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/email")
 public class EmailController {
     private final IEmailservice emailService;
+<<<<<<< HEAD
     public EmailController(EmailServiceImpl emailService) {
         this.emailService = emailService;
     }
@@ -28,4 +29,21 @@ public class EmailController {
             String response = emailService.sendEmail(emailRequest.getToEmails(),emailRequest.getSubject(),emailRequest.getBody(),emailRequest.getAttachment());
         return ResponseEntity.ok(response);
     }
+=======
+    private static final Logger logger = LoggerFactory.getLogger(EmailController.class);
+
+    public EmailController(EmailServiceImpl emailService) {
+        this.emailService = emailService;
+    }
+    @PostMapping("/send")
+    public ResponseEntity<String> sendEmail(@RequestBody EmailRequest emailRequest){
+//        if (emailRequest == null || emailRequest.getBody() == null) {
+//            logger.warn("Invalid Request Body");
+//            return ResponseEntity.badRequest().body("Invalid request body");
+//        }
+        String response = emailService.sendEmail(emailRequest.getToEmails(),emailRequest.getSubject(),emailRequest.getAttachment());
+        return ResponseEntity.ok(response);
+    }
+
+>>>>>>> EmailSender
 }
