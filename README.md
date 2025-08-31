@@ -30,7 +30,7 @@ It uses the JavaMailSender API for email sending functionality.
 
 ## Prerequisites
 
-* Java 8+
+* Java 11+
 * Maven 3.x or Gradle
 * Spring Boot 3.x
 * SMTP server (e.g., Gmail, SendGrid, etc.)
@@ -141,7 +141,7 @@ Once the application is running, you can test the email-sending functionality by
 
 ```json
 {
-  "toEmails": ["recipient-email@example.com","recipient-email@example.com",],
+  "toEmails": ["recipient-email@example.com","recipient-email@example.com"],
   "subject": "Test Email",
   "attachment": ["attachment-1","attachment-2"]
 }
