@@ -5,24 +5,18 @@ import java.util.List;
 public class EmailRequest {
     private List<String> toEmails;
     private String subject;
-<<<<<<< HEAD
     private String body;
-    private List<String> attachment;
-
-    public EmailRequest(List<String> toEmails, String subject, String body, List<String> attachment) {
-        this.toEmails = toEmails;
-        this.subject = subject;
-        this.body = body;
-=======
-//    private String body;
     private List<String> attachment;
 
     public EmailRequest(List<String> toEmails, String subject, List<String> attachment) {
         this.toEmails = toEmails;
         this.subject = subject;
-//        this.body = body;
->>>>>>> EmailSender
         this.attachment = attachment;
+    }
+    public EmailRequest(List<String> toEmails, String subject, String body, List<String> attachment) {
+        this.toEmails = toEmails;
+        this.subject = subject;
+        this.body = body;
     }
 
     public List<String> getToEmails() {
@@ -41,7 +35,6 @@ public class EmailRequest {
         this.subject = subject;
     }
 
-<<<<<<< HEAD
     public String getBody() {
         return body;
     }
@@ -49,15 +42,6 @@ public class EmailRequest {
     public void setBody(String body) {
         this.body = body;
     }
-=======
-//    public String getBody() {
-//        return body;
-//    }
-//
-//    public void setBody(String body) {
-//        this.body = body;
-//    }
->>>>>>> EmailSender
 
     public List<String> getAttachment() {
         return attachment;
@@ -66,17 +50,14 @@ public class EmailRequest {
     public void setAttachment(List<String> attachment) {
         this.attachment = attachment;
     }
+
     @Override
     public String toString() {
-        return "EmailRequest{" +
-                "attachment='" + attachment + '\'' +
-                ", toEmails=" + toEmails +
+        return "\n"+"EmailRequest{" +
+                "toEmails=" + toEmails +
                 ", subject='" + subject + '\'' +
-<<<<<<< HEAD
                 ", body='" + body + '\'' +
-=======
-//                ", body='" + body + '\'' +
->>>>>>> EmailSender
+                ", attachment=" + attachment +
                 '}';
     }
 }
