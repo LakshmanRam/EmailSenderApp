@@ -28,6 +28,24 @@ It uses the JavaMailSender API for email sending functionality.
 * Configurable SMTP settings.
 * Simple interface for future extensions.
 
+* **Send Emails with Thymeleaf Templates**
+
+    * Instead of plain text, the email body is created using **Thymeleaf templates** (HTML files).
+    * Data (e.g., username, order details) is inserted dynamically before sending.
+
+ * **Send to Multiple Recipients**
+
+    * Supports **multiple email addresses** (To..).
+    * Can send the same email to several recipients in one go.
+
+* **Send Multiple Attachments**
+
+    * Allows attaching one or more files (e.g., PDFs, images, invoices).
+    * Uses `MimeMessageHelper` to handle attachments.
+
+---
+
+
 ## Prerequisites
 
 * Java 8+
@@ -141,7 +159,7 @@ Once the application is running, you can test the email-sending functionality by
 
 ```json
 {
-  "toEmails": ["recipient-email@example.com","recipient-email@example.com",],
+  "toEmails": ["recipient-email@example.com","recipient-email@example.com"],
   "subject": "Test Email",
   "attachment": ["attachment-1","attachment-2"]
 }
