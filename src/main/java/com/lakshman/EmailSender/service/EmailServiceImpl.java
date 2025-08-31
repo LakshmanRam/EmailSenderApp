@@ -1,84 +1,77 @@
 package com.lakshman.EmailSender.service;
 
 import jakarta.mail.internet.MimeMessage;
-<<<<<<< HEAD
-=======
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> EmailSender
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-=======
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
->>>>>>> EmailSender
 
 import java.io.File;
 import java.util.List;
 @Service
-public class EmailServiceImpl implements IEmailservice{
-<<<<<<< HEAD
+public class EmailServiceImpl implements IEmailservice {
 
-    private final JavaMailSender mailSender;
-=======
+    private static final Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
     private final JavaMailSender mailSender;
     @Autowired
     private TemplateEngine templateEngine;
 
->>>>>>> EmailSender
-
     public EmailServiceImpl(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
-<<<<<<< HEAD
 
     @Override
     public String sendEmail(List<String> toEmails, String subject, String body, List<String> attachment) {
-        try{
+        try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
-            for (String to : toEmails){
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+            for (String to : toEmails) {
                 helper.addTo(to);
             }
             helper.setSubject(subject);
             helper.setText(body);
-            for (String attach : attachment){
+            for (String attach : attachment) {
                 File fileObj = new File(attach);
-                if(!fileObj.exists()){
+                if (!fileObj.exists()) {
                     return "File Doesn't Exist";
                 }
                 FileSystemResource file = new FileSystemResource(fileObj);
                 helper.addAttachment(fileObj.getName(), file);
             }
             mailSender.send(mimeMessage);
-        return "Email Sent!";
+            return "Email Sent!";
         } catch (Exception e) {
-=======
-    private static final Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
+            logger.info("Failed to send {}", e.getMessage());
+            return "Email failed to send" + e.getMessage();
+        }
+
+    }
 
     @Override
-    public String sendEmail(List<String> toEmails, String subject, List<String> attachment) {
-        try{
-            for (String to : toEmails){
+    public String sendEmailsWithTemplet(List<String> toEmails, String subject, List<String> attachment) {
+        try {
+            for (String to : toEmails) {
                 MimeMessage mimeMessage = mailSender.createMimeMessage();
-                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
+                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
                 helper.addTo(to);
                 helper.setSubject(subject);
 
                 Context context = new Context();
 //                context.setVariable("name",name);
                 // Generate the HTML content from Thymeleaf template
-                String body = templateEngine.process("emailTemplet.html",context);
+                String body = templateEngine.process("emailTemplet.html", context);
 
-                helper.setText(body,true);
+                helper.setText(body, true);
 
-                for (String attach : attachment){
+                for (String attach : attachment) {
                     File fileObj = new File(attach);
-                    if(!fileObj.exists()){
+                    if (!fileObj.exists()) {
                         logger.info("File Doesn't Exists {}", fileObj.getName());
                         return "File Doesn't Exist";
                     }
@@ -97,14 +90,11 @@ public class EmailServiceImpl implements IEmailservice{
                 }
                 mailSender.send(mimeMessage);
             }
-
-
-            logger.info("Email Sent to : {}",toEmails.toString());
-        return "Email Sent!";
+            logger.info("Email Sent to : {}", toEmails.toString());
+            return "Email Sent!";
         } catch (Exception e) {
-            logger.warn("Failed to send {}",e.getMessage());
->>>>>>> EmailSender
-            return "Failed to Send :- "+e.getMessage();
+            logger.warn("Failed to send {}", e.getMessage());
+            return "Failed to Send :- " + e.getMessage();
         }
     }
 }
