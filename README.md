@@ -48,7 +48,7 @@ It uses the JavaMailSender API for email sending functionality.
 
 ## Prerequisites
 
-* Java 8+
+* Java 11+
 * Maven 3.x or Gradle
 * Spring Boot 3.x
 * SMTP server (e.g., Gmail, SendGrid, etc.)
