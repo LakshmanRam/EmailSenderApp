@@ -17,6 +17,10 @@ public class EmailRequest {
         this.toEmails = toEmails;
         this.subject = subject;
         this.body = body;
+        this.attachment=attachment;
+    }
+
+    public EmailRequest() {
     }
 
     public List<String> getToEmails() {

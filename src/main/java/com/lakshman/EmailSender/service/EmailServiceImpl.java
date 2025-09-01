@@ -35,7 +35,7 @@ public class EmailServiceImpl implements IEmailservice {
                 helper.addTo(to);
             }
             helper.setSubject(subject);
-            helper.setText(body);
+            helper.setText(body,false);
             for (String attach : attachment) {
                 File fileObj = new File(attach);
                 if (!fileObj.exists()) {
